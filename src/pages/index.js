@@ -15,7 +15,7 @@ const Card = (props) => {
   const createdAtDate = new Date(createdAt);
   const updatedAtDate = new Date(updatedAt);
   return (
-    <div className={styles.card}>
+    <div className={styles.gridItem}>
       {thumbnail && <img className={styles.cardThumbnail} src={thumbnail} alt="thumbnail" />}
       <div className={styles.cardBody}>
         <h2>{name}</h2>
@@ -43,7 +43,7 @@ function Home({ cookingHistory }) {
       </Head>
       <main>
         <h1>TS Cooking Tracker</h1>
-        <div>
+        <div className={styles.gridContainer}>
           {cookingHistory.map((item, idx) => <Card key={idx} {...item} />)}
         </div>
       </main>

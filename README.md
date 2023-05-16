@@ -13,6 +13,7 @@ I've been cooking a lot and wanted somewhere to track what I've been making for 
   - https://codepen.io/gayane-gasparyan/pen/wvxewXO
 
 ## Notes
+- Learned CSS Grid (and how to use it with mobile)
 
 ## Errors
 - Run `yarn create next-app next-cooking-tracker-0791 --js  --src-dir --no-app-router --eslint --no-tailwind`
