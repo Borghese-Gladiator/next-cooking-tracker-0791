@@ -7,6 +7,10 @@ I've been cooking a lot and wanted somewhere to track what I've been making for 
 
 ## TO DO
 - add PropTypes
+- investigate styles update
+  - https://codepen.io/aaroniker/pen/yLEPJXj
+  - https://codepen.io/wikyware-net/pen/dyKPRxQ
+  - https://codepen.io/gayane-gasparyan/pen/wvxewXO
 
 ## Notes
 
