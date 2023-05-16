@@ -1,3 +1,28 @@
+#  Next Cooking Tracker
+I've been cooking a lot and wanted somewhere to track what I've been making for myself. No plans for using social media since I want custom formatted comments stuff and it'll force me to publish things to friends even when the result looks bad.
+
+## Features
+- Cooking History
+- Upcoming Things to Cook
+
+## TO DO
+- add PropTypes
+
+## Notes
+
+## Errors
+- Run `yarn create next-app next-cooking-tracker-0791 --js  --src-dir --no-app-router --eslint --no-tailwind`
+  - Hits error when using yarn - `yarn add --exact --cwd C:\Users\Timot\Documents\GitHub\next-cooking-tracker-0791 react react-dom next eslint eslint-config-next`
+  - Error - next.js app is setup but no dependencies and empty package.json (first time seeing this :thinking:)
+    ```
+      error execa@7.1.1: The engine "node" is incompatible with this module. Expected version "^14.18.0 || ^16.14.0 || >=18.0.0". Got "16.13.2"
+      error Found incompatible module.
+    ```
+  - Error - same thing for npm
+  - Solution: I'm a dumbass and my Node version is indeed way too low since we're on 16.20 now (`nvm install 16.20.0 && nvm use 16.20.0`)
+
+
+# Next.js README
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
