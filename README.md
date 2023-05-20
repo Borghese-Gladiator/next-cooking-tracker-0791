@@ -6,6 +6,10 @@ I've been cooking a lot and wanted somewhere to track what I've been making for 
 - Upcoming Things to Cook
 
 ## TO DO
+- dark mode
+- 
+- cards list
+
 - add PropTypes
 - investigate styles update
   - https://codepen.io/aaroniker/pen/yLEPJXj
@@ -13,7 +17,9 @@ I've been cooking a lot and wanted somewhere to track what I've been making for 
   - https://codepen.io/gayane-gasparyan/pen/wvxewXO
 
 ## Notes
-- Learned CSS Grid (and how to use it with mobile)
+- Learned how to write things via vanilla CSS for the first time (it's no wonder people use CSS modules, but the plus is global variables)
+- Learned CSS Grid (and how to use it with mobile) - https://css-tricks.com/snippets/css/complete-guide-grid/
+- Learned CSS dark mode toggle (no MUI theme :O ) - https://dev.to/abbeyperini/dark-mode-toggle-and-prefers-color-scheme-4f3m
 
 ## Errors
 - Run `yarn create next-app next-cooking-tracker-0791 --js  --src-dir --no-app-router --eslint --no-tailwind`
