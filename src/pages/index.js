@@ -1,7 +1,10 @@
 import Head from 'next/head';
 
+import { MdDarkMode, MdLightMode } from 'react-icons/md';
+
 import { baseURL } from "@/utils/constants";
 import { formatDate } from "@/utils/dates";
+import useDarkMode from "@/utils/useDarkMode";
 
 function Home({ cookingHistory }) {
   const [darkMode, setDarkMode] = useDarkMode();
@@ -36,7 +39,7 @@ const DarkModeButton = ({ darkMode, setDarkMode }) => {
   const toggle = () => setDarkMode(!darkMode);
   return (
     <button onClick={toggle}>{
-      darkMode ? <MdDarkMode /> : <MdSunny />
+      darkMode ? <MdDarkMode /> : <MdLightMode />
     }</button>
   )
 }
