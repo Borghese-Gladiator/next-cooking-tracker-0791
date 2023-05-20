@@ -1,4 +1,8 @@
-// Hook: https://usehooks.com/useDarkMode/
+import { useEffect } from "react";
+import useLocalStorage from "./useLocalStorage";
+import useMedia from "./useMedia";
+
+// source: https://usehooks.com/useDarkMode/
 function useDarkMode() {
   // Use our useLocalStorage hook to persist state through a page refresh.
   // Read the recipe for this hook to learn more: usehooks.com/useLocalStorage
