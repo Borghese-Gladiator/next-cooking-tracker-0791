@@ -17,7 +17,7 @@ I've been cooking a lot and wanted somewhere to track what I've been making for 
   - https://codepen.io/gayane-gasparyan/pen/wvxewXO
 
 ## Notes
-- Learned how to write things via vanilla CSS for the first time (it's no wonder people use CSS modules, but the plus is global variables)
+- Learned how to write things via vanilla CSS for the first time (it's no wonder people use CSS modules, but the plus is global variables) => it's janky cuz you use JS to manage the state and need to run a windows.matchQuery and everything has to be one giant ass CSS file for you to use the theming variables correctly (tho I guess that's okay? I would prefer modular code).
 - Learned CSS Grid (and how to use it with mobile) - https://css-tricks.com/snippets/css/complete-guide-grid/
 - Learned CSS dark mode toggle (no MUI theme :O ) - https://dev.to/abbeyperini/dark-mode-toggle-and-prefers-color-scheme-4f3m
 
