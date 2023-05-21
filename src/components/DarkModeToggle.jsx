@@ -1,7 +1,7 @@
 import DayNightToggle from 'react-day-and-night-toggle';
 import useDarkMode from "@/utils/useDarkMode";
 
-const MyDarkModeToggle = () => {
+const DarkModeToggle = () => {
   const [darkMode, setDarkMode] = useDarkMode();
   const toggle = () => setDarkMode(!darkMode);
   return (
@@ -12,4 +12,4 @@ const MyDarkModeToggle = () => {
   );
 }
 
-export default MyDarkModeToggle;
+export default DarkModeToggle;
