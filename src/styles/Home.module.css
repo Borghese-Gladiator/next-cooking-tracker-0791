@@ -13,24 +13,8 @@
   display: flex;
   align-items: center;
 }
-
-.nav > button {
-  background-color: DodgerBlue; /* Blue background */
-  border: none; /* Remove borders */
-  color: white; /* White text */
-  padding: 12px 16px; /* Some padding */
-  font-size: 16px; /* Set a font size */
-  cursor: pointer; /* Mouse pointer on hover */
-  width: 50px;
-  display: flex;
-}
-
-.nav > button:hover {
-  background-color: RoyalBlue;
-}
-
-.icon {
-  font-size: 24px;
+.nav > h1 {
+  font-size: 40px;
 }
 
 .gridContainer {
@@ -38,7 +22,7 @@
   width: 100%;
   display: grid; /* inline-grid */
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  grid-gap: 1rem;
+  grid-gap: 20px;
 }
 
 .card {
