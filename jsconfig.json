@@ -5,6 +5,7 @@
     "checkJs": true,
     "paths": {
       "@/*": ["./src/*"],
+      "@/styles/*": ["./src/styles/*"],
       "@/utils/*": ["./src/utils/*"],
     }
   },
