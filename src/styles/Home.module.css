@@ -25,3 +25,6 @@
   grid-gap: 20px;
 }
 
+.flexGrow {
+  flex-grow: 1
+}

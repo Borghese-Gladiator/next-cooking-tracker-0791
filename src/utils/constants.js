@@ -1,9 +1,5 @@
 export const baseURL = process.env.NODE_ENV === 'production' ? 'vercel' : "http://localhost:3000";
 
-export const darkMode = {
-  
-}
-
 export const cookingHistoryList = [
   {
     createdAt: '2023-05-16',
