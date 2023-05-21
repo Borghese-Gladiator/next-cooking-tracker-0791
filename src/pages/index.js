@@ -30,9 +30,10 @@ function Home({ cookingHistory }) {
 }
 
 Home.getInitialProps = async (ctx) => {
+  // Fetch constant from file (technically could use a require and load it, but it's cleaner as a RESET call)
   const res = await fetch(`${baseURL}/api/getCookingHistory`);
   const json = await res.json();
-  return { cookingHistory: json?.cookingHistory ?? [] };
+  return { cookingHistory: json?.cookingHistoryList ?? [] };
 };
 
 export default Home;

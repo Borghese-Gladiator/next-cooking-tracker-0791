@@ -1,5 +1,8 @@
-import { cookingHistory } from "@/utils/constants";
+import { cookingHistoryList } from "@/utils/constants";
 
 export default function handler(req, res) {
-  res.status(200).json({ cookingHistory })
+  cookingHistoryList.forEach((item, idx) => {
+    cookingHistoryList[idx] = { ...item, thumbnail: `/images/${item.thumbnail}` }
+  });
+  res.status(200).json({ cookingHistoryList })
 }
