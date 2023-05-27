@@ -1,29 +1,37 @@
-* {
-  box-sizing: border-box;
-}
-
-.theme-light {
-  --dark-text: #5E4B56;
+:root {
   --accent: #dbe7e4;
   --button-border: #5E4B56;
-  --dark-background: #DBE7E4;
-  --light-text: #5E4B56;
-  --light-background: #EDDCD2;
-}
-
-/* --light-text is fine on on the first 3, --dark-text is fine on all of them, --dark-text and dark-background are fine as text on --accent */
-.theme-dark {
   --dark-text: #292929;
   --dark-background: #2F4550;
-  --light-background: #586F7C;
-  --accent: #b8dbd9;
-  --button-border: #b8dbd9;
-  --light-text: #F9F8F8;
+  --dark-card-color: #8cabd9;
+  --dark-card-background: #586F7C;
+  
+  --light-text: #5E4B56;
+  --light-background: #e0e6eb;
+  --light-card-color: #FFF  ;
+  --light-card-background: #EBF2FA;
+
+  --text-color-normal: #0a244d;
+  --text-color-light: #8cabd9;
+  --text-color-normal: hsl(210, 10%, 62%);
+  --text-color-light: hsl(210, 15%, 35%);
+  --text-color-richer: hsl(210, 50%, 72%);
+  --text-color-highlight: hsl(25, 70%, 45%);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html, body { 
   margin: 0;
   padding: 0;
+  background-color: var(--light-background);
+  color: var(--light-text);
+}
+
+/* Class gets applied to body via hook when clicked */
+.dark-mode {
   background-color: var(--dark-background);
   color: var(--dark-text);
 }
@@ -41,3 +49,4 @@ body {
   min-height: 100vh;
   min-width: 100vw;  
 }
+
