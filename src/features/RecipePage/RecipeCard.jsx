@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Card, CardActions, Chip, Collapse, IconButton, Typography, styled } from "@mui/material";
+import { Box, Card, Chip, Collapse, IconButton, Typography, styled } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { formatDate } from "@/utils/dates";
 
@@ -23,14 +23,14 @@ const CommentsPanel = ({ comments }) => {
 
   return (
     <>
-      <CardActions disableSpacing>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
         <ExpandMore
           expand={isCollapseOpen}
           onClick={toggleCollapse}
         >
           <ExpandMoreIcon />
         </ExpandMore>
-      </CardActions>
+      </Box>
       <Collapse in={isCollapseOpen}>
         {comments.map((comment) => <Comment {...comment} />)}
       </Collapse>
@@ -104,7 +104,7 @@ const RecipeCard = (props) => {
           alt="food"
         />
       )}
-      <Box p={1}>
+      <Box p={1} pb={0}>
         <Typography variant="h6">{name}</Typography>
         <Typography variant="subtitle2">{`${formatDate(createdAtDate)}`}</Typography>
         <Typography variant="caption">{`Last Updated: ${formatDate(updatedAtDate)} `}</Typography>
