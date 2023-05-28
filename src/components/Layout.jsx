@@ -1,16 +1,19 @@
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { Box, Link as MuiLink, Typography } from '@mui/material';
+
 import { startCase } from 'lodash';
 import DarkModeToggle from './DarkModeToggle';
+import { useRouter } from 'next/router';
 
 
-const PageHeaderBar = ({ pageTitle }) => {
-  return (
-    <Box sx={{ background: 'black' }}>{pageTitle}</Box>
-  );
+function getTextFromLink(href) {
+  return startCase(href.replace(/\/$/, ""));
 }
 
+/**
+ * NAVBAR
+ */
 const Nav = () => {
   return (
     <Box sx={{
@@ -24,27 +27,41 @@ const Nav = () => {
   )
 }
 
+/**
+ * SIDEBAR
+ */
 // Link code from: https://gist.github.com/kachar/028b6994eb6b160e2475c1bb03e33e6a
-function Link(props) {
+const Link = (props) => {
   return <MuiLink component={NextLink} {...props} />
 }
 const pageLinks = ['/orders', '/recipes'].map((href, idx) => ({
   href,
-  text: startCase(href.replace(/\/$/, ""))
+  text: getTextFromLink(href)
 }));
 const Sidebar = () => {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-      {pageLinks.map(({ href, text }) => <Link href={href}>{text}</Link>)}
+    <Box m={2} sx={{ display: 'flex', flexDirection: 'column' }}>
+      {pageLinks.map(({ href, text }) => <Link href={href} variant="h4">{text}</Link>)}
     </Box>
   )
 }
 
-function Layout({ children, title: pageTitle }) {
+/**
+ * CONTENT HEADER
+ */
+const PageHeaderBar = ({ pageTitle }) => {
+  return (
+    <Typography variant="h5">{pageTitle}</Typography>
+  );
+}
+
+function Layout({ children }) {
+  const path = useRouter().asPath;
+  const pageTitle = getTextFromLink(path);
   return (
     <>
       <Head>
-        <title>TS Cooking - {`${pageTitle}`}</title>
+        <title>TS Cooking - {`${path}`}</title>
         <meta name="description" content="I've been cooking a lot and wanted somewhere to track what I've been making for myself. No plans for using social media since I want custom formatted comments stuff and it'll force me to publish things to friends even when the result looks bad." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

@@ -1,14 +1,14 @@
 import Head from 'next/head';
+import { Grid } from '@mui/material';
 
 import DarkModeToggle from '@/components/DarkModeToggle';
 import FoodCard from '@/features/FoodCard/FoodCard';
 import { baseURL } from "@/utils/constants";
-import { Grid } from '../../node_modules/@mui/material/index';
 
-function RecipePage({ cookingHistory }) {
+function RecipePage({ recipes }) {
   return (
     <Grid container gap={2}>
-      {cookingHistory.map((item, idx) => <Grid item sm={6} md={4} lg={3} xl={2}><FoodCard key={idx} {...item} /></Grid>)}
+      {recipes.map((item, idx) => <Grid item sm={6} md={4} lg={3} xl={2}><FoodCard key={idx} {...item} /></Grid>)}
     </Grid>
   )
 }
