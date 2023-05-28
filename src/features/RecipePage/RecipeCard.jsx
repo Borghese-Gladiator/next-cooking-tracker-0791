@@ -1,7 +1,42 @@
 import { useState } from "react";
-import { Box, Card, CardActions, Collapse, IconButton, Typography, styled } from "@mui/material";
+import { Box, Card, CardActions, Chip, Collapse, IconButton, Typography, styled } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { formatDate } from "@/utils/dates";
+
+const IngredientsPanel = ({ ingredients }) => {
+  return (
+    <Box mt={1} sx={{ display: 'flex', flexWrap: 'wrap' }}>
+      {ingredients.map((ingredient, idx) => {
+        return (
+          <Box p={0.2}>
+            <Chip variant="outlined" label={ingredient} />
+          </Box>
+        )
+      })}
+    </Box>
+  )
+}
+
+const CommentsPanel = ({ comments }) => {
+  const [isCollapseOpen, setIsCollapseOpen] = useState(false);
+  const toggleCollapse = () => setIsCollapseOpen(!isCollapseOpen);
+
+  return (
+    <>
+      <CardActions disableSpacing>
+        <ExpandMore
+          expand={isCollapseOpen}
+          onClick={toggleCollapse}
+        >
+          <ExpandMoreIcon />
+        </ExpandMore>
+      </CardActions>
+      <Collapse in={isCollapseOpen}>
+        {comments.map((comment) => <Comment {...comment} />)}
+      </Collapse>
+    </>
+  )
+}
 
 const Comment = (props) => {
   const { createdAt, proList, conList } = props;
@@ -42,46 +77,29 @@ const RecipeCard = (props) => {
   const createdAtDate = new Date(createdAt);
   const updatedAtDate = new Date(updatedAt);
 
-  const [isCollapseOpen, setIsCollapseOpen] = useState(false);
-  const toggleCollapse = () => setIsCollapseOpen(!isCollapseOpen);
-
   return (
-    <Card>
+    <Card sx={{
+      display: 'flex',
+      flexDirection: 'column'
+    }}>
       {thumbnail && (
         <Box component="img"
           src={thumbnail} sx={{
+            width: '100%',
             maxHeight: '200px',
-            objectFit: 'cover'
+            objectFit: 'cover',
+            alignSelf: 'center'
           }}
+          mb={1}
           alt="food"
         />
       )}
       <Typography variant="h6">{name}</Typography>
       <Typography variant="subtitle2">{`${formatDate(createdAtDate)}`}</Typography>
       <Typography variant="caption">{`Last Updated: ${formatDate(updatedAtDate)}`}</Typography>
-      {!hideIngredients && (
-        <Box>
-          {ingredients.map((ingredient) =>
-            <Typography variant="body2">{ingredient}</Typography>
-          )}
-        </Box>
-      )}
-      {!hideComments && (
-        <>
-          <CardActions disableSpacing>
-            <ExpandMore
-              expand={isCollapseOpen}
-              onClick={toggleCollapse}
-            >
-              <ExpandMoreIcon />
-            </ExpandMore>
-          </CardActions>
-          <Collapse in={isCollapseOpen}>
-            {comments.map((comment) => <Comment {...comment} />)}
-          </Collapse>
-        </>
-      )}
-    </Card>
+      {!hideIngredients && <IngredientsPanel ingredients={ingredients} />}
+      {!hideComments && <CommentsPanel comments={comments} />}
+    </Card >
   )
 }
 
