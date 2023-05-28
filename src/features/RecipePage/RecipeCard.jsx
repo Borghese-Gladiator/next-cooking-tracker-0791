@@ -72,7 +72,8 @@ const RecipeCard = (props) => {
     hideIngredients = false,
     hideComments,
     ingredients,
-    comments
+    comments,
+    isOrdered,
   } = props;
   const createdAtDate = new Date(createdAt);
   const updatedAtDate = new Date(updatedAt);
@@ -80,7 +81,16 @@ const RecipeCard = (props) => {
   return (
     <Card sx={{
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      borderColor: `${isOrdered ? 'primary.main' : 'grey'}`,
+      borderStyle: 'solid',
+      borderWidth: '2px',
+      borderRadius: '10px',
+      boxShadow: '0 13px 27px -5px hsla(240, 30.1%, 28%, 0.25), 0 8px 16px -8px hsla(0, 0%, 0%, 0.3), 0 -6px 16px -6px hsla(0, 0%, 0%, 0.03)',
+      '&:hover': {
+        transform: 'scale(1.03)',
+        boxShadow: '0 13px 40px -5px hsla(240, 30.1%, 28%, 0.12), 0 8px 32px -8px hsla(0, 0%, 0%, 0.14), 0 -6px 32px -6px hsla(0, 0%, 0%, 0.02)'
+      },
     }}>
       {thumbnail && (
         <Box component="img"
@@ -94,9 +104,11 @@ const RecipeCard = (props) => {
           alt="food"
         />
       )}
-      <Typography variant="h6">{name}</Typography>
-      <Typography variant="subtitle2">{`${formatDate(createdAtDate)}`}</Typography>
-      <Typography variant="caption">{`Last Updated: ${formatDate(updatedAtDate)}`}</Typography>
+      <Box p={1}>
+        <Typography variant="h6">{name}</Typography>
+        <Typography variant="subtitle2">{`${formatDate(createdAtDate)}`}</Typography>
+        <Typography variant="caption">{`Last Updated: ${formatDate(updatedAtDate)} `}</Typography>
+      </Box>
       {!hideIngredients && <IngredientsPanel ingredients={ingredients} />}
       {!hideComments && <CommentsPanel comments={comments} />}
     </Card >

@@ -6,9 +6,9 @@ const RecipePage = ({ recipes }) => {
     <>
       <Button>Sort</Button>
       <Grid container gap={2}>
-        {recipes.map((item, idx) => (
+        {recipes.map((recipe, idx) => (
           <Grid item sm={6} md={4} lg={3} xl={2}>
-            <RecipeCard key={idx} {...item} />
+            <RecipeCard key={idx} {...recipe} />
           </Grid>
         ))}
       </Grid>
