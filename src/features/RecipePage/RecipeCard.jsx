@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Box, Card, Chip, Collapse, IconButton, Typography, styled } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { formatDate } from "@/utils/dates";
+import { upperCase } from "lodash";
 
 const IngredientsPanel = ({ ingredients }) => {
   return (
@@ -105,7 +106,7 @@ const RecipeCard = (props) => {
         />
       )}
       <Box p={1} pb={0}>
-        <Typography variant="h6">{name}</Typography>
+        <Typography variant="h6" sx={{ textAlign: 'center' }}>{upperCase(name)}</Typography>
         <Typography variant="subtitle2">{`${formatDate(createdAtDate)}`}</Typography>
         <Typography variant="caption">{`Last Updated: ${formatDate(updatedAtDate)} `}</Typography>
       </Box>
