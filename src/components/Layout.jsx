@@ -51,7 +51,7 @@ const Sidebar = () => {
  */
 const PageHeaderBar = ({ pageTitle }) => {
   return (
-    <Typography variant="h5">{pageTitle}</Typography>
+    <Typography variant="h5" mb={2}>{pageTitle}</Typography>
   );
 }
 
