@@ -2,7 +2,6 @@ import Head from 'next/head';
 
 import DarkModeToggle from '@/components/DarkModeToggle';
 import FoodCard from '@/features/FoodCard/FoodCard';
-import styles from '@/styles/Home.module.css';
 import { baseURL } from "@/utils/constants";
 
 function Home({ cookingHistory }) {
@@ -14,16 +13,8 @@ function Home({ cookingHistory }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} theme-dark`}>
-        <nav className={styles.nav}>
-          <div className={styles.flexGrow} />
-          <h1>TS Cooking Tracker</h1>
-          <div className={styles.flexGrow} />
-          <DarkModeToggle />
-        </nav>
-        <div className={styles.gridContainer}>
-          {cookingHistory.map((item, idx) => <FoodCard key={idx} {...item} />)}
-        </div>
+      <main>
+        BLAH
       </main>
     </>
   )
