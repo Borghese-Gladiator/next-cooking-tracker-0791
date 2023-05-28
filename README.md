@@ -21,7 +21,27 @@ I've been cooking a lot and wanted somewhere to track what I've been making for 
     ```
   - Error - same thing for npm
   - Solution: I'm a dumbass and my Node version is indeed way too low since we're on 16.20 now (`nvm install 16.20.0 && nvm use 16.20.0`)
+- Try to commit with Husky pre commit hooks in GitHub Desktop on Windows
+  - Error
+    ```
+    /c/Program Files/nodejs/yarn: line 5: cygpath: command not found
+    node:internal/modules/cjs/loader:1078
+      throw err;
+      ^
 
+    Error: Cannot find module 'C:\Users\Timot\AppData\Local\GitHubDesktop\app-3.2.3\resources\app\git\node_modules\yarn\bin\yarn.js'
+        at Module._resolveFilename (node:internal/modules/cjs/loader:1075:15)
+        at Module._load (node:internal/modules/cjs/loader:920:27)
+        at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
+        at node:internal/main/run_main_module:23:47 {
+      code: 'MODULE_NOT_FOUND',
+      requireStack: []
+    }
+
+    Node.js v18.16.0
+    husky - pre-commit hook exited with code 1 (error)
+    ```
+  - Solution? - https://stackoverflow.com/questions/74472335/husky-github-desktop-commit-error-cannot-find-module-yarn-js
 
 # Next.js README
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
