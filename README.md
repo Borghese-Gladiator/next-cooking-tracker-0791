@@ -2,8 +2,9 @@
 I've been cooking a lot and wanted somewhere to track what I've been making for myself. No plans for using social media since I want custom formatted comments stuff and it'll force me to publish things to friends even when the result looks bad.
 
 ## Features
-- Cooking History
-- Upcoming Things to Cook
+- Cooking History - CRUD for list of cooked meals and my retro commentsz
+- Order - CRUD for food to eat
+  - generates ingredient list based on orders
 
 ## Notes
 - Learned how to write things via vanilla CSS for the first time (it's no wonder people use CSS modules, but the plus is global variables) => it's janky cuz you use JS to manage the state and need to run a windows.matchQuery and everything has to be one giant ass CSS file for you to use the theming variables correctly (tho I guess that's okay? I would prefer modular code).
