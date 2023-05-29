@@ -43,7 +43,8 @@ function Layout({ children }) {
       }}>
         <Sidebar pageTitle={pageTitle} />
         <Paper square={true} sx={{ p: 2 }}>
-          <Nav />
+          {/* TODO(5/29) - write dark mode into Nav */}
+          {/* <Nav /> */}
           <PageHeaderBar pageTitle={pageTitle} />
           {children}
         </Paper>

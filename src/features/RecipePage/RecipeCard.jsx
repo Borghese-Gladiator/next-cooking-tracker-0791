@@ -6,19 +6,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { formatDate } from "@/utils/dates";
 import { upperCase } from "lodash";
 
-const IngredientsPanel = ({ ingredients }) => {
-  return (
-    <Box mt={1} sx={{ display: 'flex', flexWrap: 'wrap' }}>
-      {ingredients.map((ingredient, idx) => {
-        return (
-          <Box p={0.2}>
-            <Chip variant="outlined" label={ingredient} />
-          </Box>
-        )
-      })}
-    </Box>
-  )
-}
 
 const CommentsPanel = ({ comments }) => {
   const [isCollapseOpen, setIsCollapseOpen] = useState(false);

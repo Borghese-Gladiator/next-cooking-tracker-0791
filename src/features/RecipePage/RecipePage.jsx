@@ -1,46 +1,27 @@
 import { useState } from "react";
 import { Box, Button, Grid } from "@mui/material";
 import RecipeCard from "./RecipeCard";
+import Content from "@/components/Content";
+import RecipeList from "./RecipeList";
 
 
 const RecipePage = ({ recipes }) => {
   const sortedRecipes = [...recipes].sort((recipeA, recipeB) => (recipeB.createdAt - recipeA.createdAt));
-  const [orderList, setOrderList] = useState(recipes.filter(({ isOrdered }) => isOrdered));
-  const addToOrder = (id) => {
-    setOrderList([...orderList, id])
-  };
-  const removeFromOrder = (id) => {
-    setOrderList(orderList.filter(({ id: orderId }) => orderId !== id));
-  };
+  const initialOrders = recipes.filter(({ isOrdered }) => isOrdered).map(({ id }) => id);
+  const [orders, setOrders] = useState(initialOrders);
   const onSubmit = () => {
     // updates isOrdered attribute for all recipes
-    patchRecipes(orderList);
+    patchRecipes(orders);
   }
 
   return (
-    <Box
-      p={3}
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        backgroundColor: (theme) => theme.color.gray,
-      }}
-    >
-      <Grid container gap={2}>
-        {sortedRecipes.map((recipe, idx) => (
-          <Grid item sm={12} md={6} lg={4} xl={3}>
-            <RecipeCard
-              {...recipe}
-              key={idx}
-              hideIngredients={true}
-              addToOrder={addToOrder}
-              removeFromOrder={removeFromOrder}
-            />
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+    <Content>
+      <RecipeList
+        recipes={sortedRecipes}
+        orders={orders}
+        setOrders={setOrders}
+      />
+    </Content >
   )
 };
 
