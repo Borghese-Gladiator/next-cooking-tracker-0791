@@ -1,14 +1,23 @@
 import Head from 'next/head';
 import NextLink from 'next/link';
-import { Box, Link as MuiLink, Typography } from '@mui/material';
+import { AppBar, Box, Button, ListItem, Link as MuiLink, Paper, Tooltip, Typography } from '@mui/material';
 
 import { startCase } from 'lodash';
 import DarkModeToggle from './DarkModeToggle';
 import { useRouter } from 'next/router';
 
 
+/**
+ * UTILS
+ */
 function getTextFromLink(href) {
   return startCase(href.replace(/\/$/, ""));
+}
+
+function Logo() {
+  return <Typography variant="h5" p={2} sx={{
+    "color": (theme) => theme.palette.getContrastText("#191A24")
+  }}>LOGO</Typography>
 }
 
 /**
@@ -16,11 +25,15 @@ function getTextFromLink(href) {
  */
 const Nav = () => {
   return (
-    <Box sx={{
-      display: 'flex',
-      alignItems: 'center',
-    }} mb={3} mx={2}>
-      <Typography variant="h4">TS Cooking</Typography>
+    <Box
+      py={3}
+      px={2}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        backgroundColor: 'primary.main',
+      }}
+    >
       <Box sx={{ flexGrow: 1 }} />
       <DarkModeToggle />
     </Box>
@@ -38,11 +51,39 @@ const pageLinks = ['/orders', '/recipes'].map((href, idx) => ({
   href,
   text: getTextFromLink(href)
 }));
-const Sidebar = () => {
+const Sidebar = ({ pageTitle }) => {
   return (
-    <Box m={2} sx={{ display: 'flex', flexDirection: 'column' }}>
-      {pageLinks.map(({ href, text }) => <Link href={href} variant="h4">{text}</Link>)}
-    </Box>
+    <Paper
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        borderRadius: 0
+      }}
+    >
+      {/*TODO(5/28) - add logo */}
+      <Logo />
+      {pageLinks.map(({ href, text }) => {
+        console.log('pageTitle', pageTitle)
+        const isOpen = pageTitle === text;
+        return (
+          <Link underline="none" href={href} variant="h6">
+            <ListItem
+              sx={{
+                width: '100%',
+                height: 56,
+                color: isOpen ? 'primary.main' : 'white',
+                borderLeftWidth: isOpen && '6px',
+                ':hover': {
+                  backgroundColor: isOpen && 'link.hover'
+                }
+              }}
+            >
+              {text}
+            </ListItem>
+          </Link>
+        );
+      })}
+    </Paper >
   )
 }
 
@@ -66,16 +107,16 @@ function Layout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav />
       <Box sx={{
         display: 'grid',
-        gridTemplateColumns: '1fr 5fr'
+        gridTemplateColumns: '1fr 5fr',
       }}>
-        <Sidebar />
-        <main>
+        <Sidebar pageTitle={pageTitle} />
+        <Paper>
+          <Nav />
           <PageHeaderBar pageTitle={pageTitle} />
           {children}
-        </main>
+        </Paper>
       </Box>
     </>
   )
