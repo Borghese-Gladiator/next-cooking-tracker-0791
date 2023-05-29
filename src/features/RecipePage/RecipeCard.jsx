@@ -5,6 +5,7 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { formatDate } from "@/utils/dates";
 import { upperCase } from "lodash";
+import IngredientsPanel from "@/features/IngredientsPanel";
 
 
 const CommentsPanel = ({ comments }) => {
