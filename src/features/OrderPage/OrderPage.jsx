@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Box, Chip, Paper, Typography } from "@mui/material";
 
@@ -8,11 +8,16 @@ import RecipeList from "@/features/RecipePage/RecipeList";
 
 
 const OrderPage = ({ recipes }) => {
-  // const initialIngredients = [...new Set(recipes.flatMap(({ ingredients }) => ingredients))];
   const initialOrders = recipes.filter(({ isOrdered }) => isOrdered).map(({ id }) => id);
   const [orders, setOrders] = useState(initialOrders);
-  const orderedRecipes = recipes.filter(({ id }) => orders.includes(id));
-  const ingredients = [...new Set(orderedRecipes.flatMap(({ ingredients }) => ingredients))];
+  const { orderedRecipes, ingredients } = useMemo(() => {
+    const orderedRecipes = recipes.filter(({ id }) => orders.includes(id))
+    const ingredients = [...new Set(orderedRecipes.flatMap(({ ingredients }) => ingredients))];
+    return {
+      orderedRecipes,
+      ingredients
+    }
+  }, [orders]);
 
   return (
     <Content>
@@ -28,6 +33,8 @@ const OrderPage = ({ recipes }) => {
           recipes={orderedRecipes}
           orders={orders}
           setOrders={setOrders}
+          hideIngredients={true}
+          hideComments={true}
         />
       </Box>
     </Content>

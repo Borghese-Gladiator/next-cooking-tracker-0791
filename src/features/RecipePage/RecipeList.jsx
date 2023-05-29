@@ -1,12 +1,19 @@
 import { Grid } from "@mui/material";
 import RecipeCard from "./RecipeCard";
+import { useEffect } from "react";
 
-const RecipeList = ({ recipes, orders, setOrders }) => {
+const RecipeList = ({
+  recipes,
+  orders,
+  setOrders,
+  hideIngredients = false,
+  hideComments = true,
+}) => {
   const addToOrder = (id) => {
     setOrders([...orders, id])
   };
   const removeFromOrder = (id) => {
-    setOrders(orders.filter(({ id: orderId }) => orderId !== id));
+    setOrders(orders.filter((orderId) => orderId !== id));
   };
   return (
     <Grid
@@ -20,9 +27,10 @@ const RecipeList = ({ recipes, orders, setOrders }) => {
           <RecipeCard
             {...recipe}
             key={idx}
-            hideIngredients={true}
             addToOrder={addToOrder}
             removeFromOrder={removeFromOrder}
+            hideIngredients={hideIngredients}
+            hideComments={hideComments}
           />
         </Grid>
       ))}

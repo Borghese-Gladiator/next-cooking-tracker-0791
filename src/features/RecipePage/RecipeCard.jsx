@@ -60,11 +60,11 @@ const RecipeCard = (props) => {
     name,
     createdAt,
     updatedAt,
-    hideIngredients = false,
-    hideComments,
     ingredients,
     comments,
     isOrdered,
+    hideIngredients,
+    hideComments,
     addToOrder,
     removeFromOrder,
   } = props;
@@ -99,7 +99,6 @@ const RecipeCard = (props) => {
           }}
           mb={1}
           alt="food"
-          onClick={() => isOrdered ? removeFromOrder(id) : addToOrder(id)}
         />
       )}
       <Box p={1} pb={0}>
@@ -108,14 +107,20 @@ const RecipeCard = (props) => {
         <Typography variant="caption">{`Last Updated: ${formatDate(updatedAtDate)} `}</Typography>
       </Box>
       <Box sx={{ position: 'absolute', top: -18, right: -18 }}>
-        <Fab sx={{
-          // color: (theme) => isOrdered ? theme.palette.primary.main : theme.color.gray,
-          color: (theme) => theme.color.light,
-          backgroundColor: (theme) => isOrdered ? theme.palette.primary.main : theme.color.darkGray,
-          ':hover': {
-            backgroundColor: (theme) => !isOrdered ? theme.palette.primary.main : theme.color.darkGray
-          }
-        }}>
+        <Fab
+          sx={{
+            // color: (theme) => isOrdered ? theme.palette.primary.main : theme.color.gray,
+            color: (theme) => theme.color.light,
+            backgroundColor: (theme) => isOrdered ? theme.palette.primary.main : theme.color.darkGray,
+            ':hover': {
+              backgroundColor: (theme) => !isOrdered ? theme.palette.primary.main : theme.color.darkGray
+            }
+          }}
+          onClick={() => {
+            console.log("BLAH")
+            return isOrdered ? removeFromOrder(id) : addToOrder(id)
+          }}
+        >
           {isOrdered ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
         </Fab>
       </Box>
