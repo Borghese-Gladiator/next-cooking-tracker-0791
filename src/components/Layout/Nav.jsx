@@ -9,6 +9,7 @@ const Nav = () => {
     <Box
       py={3}
       px={2}
+      mb={2}
       sx={{
         display: 'flex',
         alignItems: 'center',

@@ -29,10 +29,10 @@ const Link = (props) => {
 const Sidebar = ({ pageTitle }) => {
   return (
     <Paper
+      square={true}
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        borderRadius: 0,
         backgroundColor: (theme) => theme.palette.background.sidebar
       }}
     >

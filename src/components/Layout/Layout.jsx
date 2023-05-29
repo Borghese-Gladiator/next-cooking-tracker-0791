@@ -9,7 +9,19 @@ import { getTextFromLink } from './utils';
 
 const PageHeaderBar = ({ pageTitle }) => {
   return (
-    <Typography variant="h5" mb={2}>{pageTitle}</Typography>
+    <Paper
+      sx={{
+        height: 51,
+        width: '100%',
+        boxShadow: '0px 2px 2px #98A2B380',
+        mb: 2,
+        backgroundColor: (theme) => theme.color.gray,
+      }}
+    >
+      <Typography variant="h6" p={1}>
+        {pageTitle}
+      </Typography>
+    </Paper>
   );
 }
 
@@ -30,7 +42,7 @@ function Layout({ children }) {
         minHeight: '100vh'
       }}>
         <Sidebar pageTitle={pageTitle} />
-        <Paper>
+        <Paper square={true} sx={{ p: 2 }}>
           <Nav />
           <PageHeaderBar pageTitle={pageTitle} />
           {children}

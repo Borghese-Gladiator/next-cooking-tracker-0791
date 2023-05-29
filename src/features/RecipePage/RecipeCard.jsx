@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Box, Card, Chip, Collapse, IconButton, Typography, styled } from "@mui/material";
+import { Box, Card, Chip, Collapse, Fab, IconButton, Typography, styled } from "@mui/material";
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { formatDate } from "@/utils/dates";
 import { upperCase } from "lodash";
@@ -66,6 +68,7 @@ const ExpandMore = styled((props) => {
 
 const RecipeCard = (props) => {
   const {
+    id,
     thumbnail,
     name,
     createdAt,
@@ -75,17 +78,21 @@ const RecipeCard = (props) => {
     ingredients,
     comments,
     isOrdered,
+    addToOrder,
+    removeFromOrder,
   } = props;
   const createdAtDate = new Date(createdAt);
   const updatedAtDate = new Date(updatedAt);
 
   return (
     <Card sx={{
+      position: 'relative',
       display: 'flex',
       flexDirection: 'column',
-      borderColor: `${isOrdered ? 'primary.main' : 'grey'}`,
+      backgroundColor: (theme) => theme.color.light,
+      borderColor: (theme) => isOrdered ? theme.palette.primary.main : theme.color.darkGray,
       borderStyle: 'solid',
-      borderWidth: '2px',
+      borderWidth: '4px',
       borderRadius: '10px',
       boxShadow: '0 13px 27px -5px hsla(240, 30.1%, 28%, 0.25), 0 8px 16px -8px hsla(0, 0%, 0%, 0.3), 0 -6px 16px -6px hsla(0, 0%, 0%, 0.03)',
       '&:hover': {
@@ -94,8 +101,10 @@ const RecipeCard = (props) => {
       },
     }}>
       {thumbnail && (
-        <Box component="img"
-          src={thumbnail} sx={{
+        <Box
+          component="img"
+          src={thumbnail}
+          sx={{
             width: '100%',
             maxHeight: '200px',
             objectFit: 'cover',
@@ -103,12 +112,25 @@ const RecipeCard = (props) => {
           }}
           mb={1}
           alt="food"
+          onClick={() => isOrdered ? removeFromOrder(id) : addToOrder(id)}
         />
       )}
       <Box p={1} pb={0}>
         <Typography variant="h6" sx={{ textAlign: 'center' }}>{upperCase(name)}</Typography>
         <Typography variant="subtitle2">{`${formatDate(createdAtDate)}`}</Typography>
         <Typography variant="caption">{`Last Updated: ${formatDate(updatedAtDate)} `}</Typography>
+      </Box>
+      <Box sx={{ position: 'absolute', top: -18, right: -18 }}>
+        <Fab sx={{
+          // color: (theme) => isOrdered ? theme.palette.primary.main : theme.color.gray,
+          color: (theme) => theme.color.light,
+          backgroundColor: (theme) => isOrdered ? theme.palette.primary.main : theme.color.darkGray,
+          ':hover': {
+            backgroundColor: (theme) => !isOrdered ? theme.palette.primary.main : theme.color.darkGray
+          }
+        }}>
+          {isOrdered ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
+        </Fab>
       </Box>
       {!hideIngredients && <IngredientsPanel ingredients={ingredients} />}
       {!hideComments && <CommentsPanel comments={comments} />}
