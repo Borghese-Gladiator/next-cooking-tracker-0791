@@ -1,16 +1,13 @@
 import { createTheme } from "@mui/material";
 
 const theme = {
-  black: '#000000',
-  darkGray: '#333333',
-  gray: '#90A4AE',
-  lightGray: '#CFD8DC',
-  light: '#ECEFF1',
-  white: '#FFFFFF',
-  link: {
-    active: '#FAFAFF',
-    inactive: '#A4A6B3',
-    hover: '#1E7978',
+  color: {
+    black: '#000000',
+    darkGray: '#333333',
+    gray: '#90A4AE',
+    lightGray: '#CFD8DC',
+    light: '#ECEFF1',
+    white: '#FFFFFF',
   },
   palette: {
     primary: {
@@ -23,7 +20,12 @@ const theme = {
     background: {
       default: '#11111',
       paper: '#191A24',
-      icon: '#1C1C27',
+      sidebar: '#0A090B',
+    },
+    link: {
+      active: '#FAFAFF',
+      inactive: '#A4A6B3',
+      hover: '#1E7978',
     },
   },
 }

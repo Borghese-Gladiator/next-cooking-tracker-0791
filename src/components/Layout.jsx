@@ -1,10 +1,12 @@
 import Head from 'next/head';
 import NextLink from 'next/link';
-import { AppBar, Box, Button, ListItem, Link as MuiLink, Paper, Tooltip, Typography } from '@mui/material';
+import { AppBar, Box, Button, ListItem, ListItemIcon, ListItemText, Link as MuiLink, Paper, Tab, Tabs, Tooltip, Typography } from '@mui/material';
+import FastFoodIcon from '@mui/icons-material/Fastfood';
 
 import { startCase } from 'lodash';
 import DarkModeToggle from './DarkModeToggle';
 import { useRouter } from 'next/router';
+
 
 
 /**
@@ -47,7 +49,17 @@ const Nav = () => {
 const Link = (props) => {
   return <MuiLink component={NextLink} {...props} />
 }
-const pageLinks = ['/orders', '/recipes'].map((href, idx) => ({
+const pageLinks = [
+  {
+    icon: <FastFoodIcon />,
+    href: '/orders'
+  },
+  {
+    icon: <FastFoodIcon />,
+    href: '/recipes'
+  }
+].map(({ icon, href }) => ({
+  icon,
   href,
   text: getTextFromLink(href)
 }));
@@ -57,30 +69,45 @@ const Sidebar = ({ pageTitle }) => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        borderRadius: 0
+        borderRadius: 0,
+        backgroundColor: (theme) => theme.palette.background.sidebar
       }}
     >
       {/*TODO(5/28) - add logo */}
       <Logo />
-      {pageLinks.map(({ href, text }) => {
+      {pageLinks.map(({ href, text, icon }) => {
         console.log('pageTitle', pageTitle)
         const isOpen = pageTitle === text;
         return (
-          <Link underline="none" href={href} variant="h6">
-            <ListItem
-              sx={{
-                width: '100%',
-                height: 56,
-                color: isOpen ? 'primary.main' : 'white',
-                borderLeftWidth: isOpen && '6px',
-                ':hover': {
-                  backgroundColor: isOpen && 'link.hover'
-                }
-              }}
-            >
-              {text}
-            </ListItem>
-          </Link>
+          <Box pl={2}>
+            <Link underline="none" href={href} variant="h6" color="inherit">
+              <ListItem
+                sx={{
+                  width: '100%',
+                  height: 56,
+                  borderLeft: (theme) => isOpen && `4px ${theme.palette.primary.main} solid`,
+                  transition: ' background .2s ease-in',
+                  ':hover': {
+                    backgroundColor: (theme) => theme.color.darkGray
+                  }
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    color: (theme) => isOpen ? theme.palette.primary.main : theme.color.gray,
+                  }}
+                >
+                  {icon}
+                </ListItemIcon>
+                <ListItemText
+                  primary={text}
+                  sx={{
+                    color: (theme) => isOpen ? theme.palette.primary.main : theme.color.gray,
+                  }}
+                />
+              </ListItem>
+            </Link>
+          </Box>
         );
       })}
     </Paper >
@@ -109,7 +136,8 @@ function Layout({ children }) {
       </Head>
       <Box sx={{
         display: 'grid',
-        gridTemplateColumns: '1fr 5fr',
+        gridTemplateColumns: '2fr 5fr',
+        minHeight: '100vh'
       }}>
         <Sidebar pageTitle={pageTitle} />
         <Paper>
